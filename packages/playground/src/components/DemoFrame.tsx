@@ -9,6 +9,8 @@ import { __createChakraFrameProvider } from '@rjsf/chakra-ui';
 import { StyleProvider as AntdStyleProvider } from '@ant-design/cssinjs';
 import { __createFluentUIRCFrameProvider } from '@rjsf/fluentui-rc';
 
+import { __createIonicFrameProvider } from '@rjsf/ionic';
+
 /*
 Adapted from https://github.com/mui-org/material-ui/blob/master/docs/src/modules/components/DemoSandboxed.js
 
@@ -113,6 +115,13 @@ export default function DemoFrame(props: DemoFrameProps) {
         <style dangerouslySetInnerHTML={{ __html: 'label { font-weight: normal; }' }} />
         {head}
         {children}
+      </>
+    );
+  } else if (theme === 'ionic') {
+    // TODO: find a better way to render ionic in an iframe, if we need to do so.
+    body = (
+      <>
+        <FrameContextConsumer>{__createIonicFrameProvider(props)}</FrameContextConsumer>
       </>
     );
   } else if (theme === 'fluentui-rc') {
